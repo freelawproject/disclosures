@@ -76,29 +76,3 @@ def scan_disclosure(request):
     )
     cleanup_form(form)
     return JsonResponse(financial_record_data)
-
-
-# def images_to_pdf(request):
-#     """
-#
-#     :param request:
-#     :return:
-#     """
-#     form = ImagePdfForm(request.POST)
-#     if not form.is_valid():
-#         return JsonResponse({"success": False})
-#     sorted_urls = form.cleaned_data["sorted_urls"]
-#
-#     if len(sorted_urls) > 1:
-#         image_list = download_images(sorted_urls)
-#         with NamedTemporaryFile(suffix=".pdf") as tmp:
-#             with open(tmp.name, "wb") as f:
-#                 f.write(img2pdf.convert(image_list))
-#             cleaned_pdf_bytes = strip_metadata_from_path(tmp.name)
-#     else:
-#         tiff_image = Image.open(
-#             requests.get(sorted_urls[0], stream=True, timeout=60 * 5).raw
-#         )
-#         pdf_bytes = convert_tiff_to_pdf_bytes(tiff_image)
-#         cleaned_pdf_bytes = strip_metadata_from_bytes(pdf_bytes)
-#     return HttpResponse(cleaned_pdf_bytes, content_type="application/pdf")
