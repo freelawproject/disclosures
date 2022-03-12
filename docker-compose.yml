@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  bte:
+    build: .
+    networks:
+      - cl_net_overlay
+
+networks:
+  cl_net_overlay:
+    driver: bridge
+    external: true

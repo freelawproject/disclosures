@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  disclosures:
+    container_name: disclosures
+    build: .
+    image: freelawproject/disclosures
+    networks:
+      - cl_net_overlay
+    volumes:
+      - /Users/Palin/Code/disclosures/disclosures:/opt/app/disclosures
+
+  mock_courtlistener_disclosures:
+    container_name: mock_courtlistener_disclosures
+    image: freelawproject/disclosures
+    networks:
+      - cl_net_overlay
+    depends_on:
+      - disclosures
+    volumes:
+      - /Users/Palin/Code/disclosures/disclosures:/opt/app/disclosures
+
+networks:
+  cl_net_overlay:
+    driver: bridge
+    external: true
+
+
