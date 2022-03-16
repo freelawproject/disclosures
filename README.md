@@ -29,7 +29,7 @@ After the compose file has finished you should be able to test that you have a w
 
 Should return and HTTP Response containing Heartbeat detected.
 
-If connecting via the docker network you can test by running 
+If connecting via the docker network you can test by running
 
     curl http://http://disclosures:5050
 
