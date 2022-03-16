@@ -1,4 +1,4 @@
-FROM nginx:mainline
+FROM python:3.9-slim
 
 RUN apt-get update
 RUN apt-get install -y python3-pip \
@@ -8,7 +8,8 @@ RUN apt-get install -y --no-install-recommends \
         libatlas-base-dev gfortran \
         libpcre3-dev g++ libz-dev  \
         build-essential make pkg-config \
-        libjpeg-dev libpng-dev libtiff-dev
+        libjpeg-dev libpng-dev libtiff-dev \
+        nginx
 
 #Install QPDF
 COPY docker/install-qpdf.sh /opt/
@@ -35,14 +36,13 @@ RUN apt-get remove -y wget unzip bc
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-COPY ./requirements.txt .
+COPY requirements.txt .
 RUN pip install -r requirements.txt
 
+COPY disclosures /opt/app/disclosures
+COPY manage.py /opt/app/
 WORKDIR /opt/app
 
-COPY .. .
-
-RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx/nginx.conf /etc/nginx/conf.d
 
 COPY docker/docker-entrypoint.sh /opt/app/

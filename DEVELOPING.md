@@ -1,0 +1,1 @@
+docker exec -it mock_courtlistener_disclosures python3 -m unittest disclosures.tests
