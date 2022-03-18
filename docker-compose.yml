@@ -1,8 +1,8 @@
 version: '3.8'
 
 services:
-  disclosures:
-    container_name: disclosures
+  cl-disclosures:
+    container_name: cl-disclosures
     build:
       dockerfile: docker/Dockerfile
       context: .
