@@ -25,7 +25,7 @@ SECRET_KEY = "This-is-not-a-secret-key"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["disclosures", "0.0.0.0", "localhost"]
+ALLOWED_HOSTS = ["cl-disclosures", "0.0.0.0", "localhost"]
 
 # Application definition
 

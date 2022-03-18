@@ -1,8 +1,8 @@
 version: '3.8'
 
 services:
-  disclosures:
-    container_name: disclosures
+  cl-disclosures:
+    container_name: cl-disclosures
     build:
       dockerfile: docker/Dockerfile
       context: .
@@ -16,7 +16,7 @@ services:
     networks:
       - cl_net_overlay
     depends_on:
-      - disclosures
+      - cl-disclosures
 
 networks:
   cl_net_overlay:

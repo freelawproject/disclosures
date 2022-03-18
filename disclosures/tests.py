@@ -1,4 +1,3 @@
-import json
 import unittest
 from typing import Any
 
@@ -14,14 +13,14 @@ def make_file(filename) -> Any:
 class DisclosureTest(unittest.TestCase):
     def test_heartbeat(self):
         """"""
-        response = requests.post("http://disclosures:5050/")
+        response = requests.post("http://cl-disclosures:5050/")
         self.assertEqual(response.status_code, 200, msg="Failed status code.")
         self.assertEqual(response.text, "Heartbeat detected.", msg="Failed response.")
 
     def test_disclosures(self):
         """"""
         files = make_file(filename="simple-disclosure.pdf")
-        response = requests.post("http://disclosures:5050/simple/", files=files)
+        response = requests.post("http://cl-disclosures:5050/simple/", files=files)
         self.assertEqual(response.status_code, 200, msg="Failed status code.")
         self.assertTrue(response.json()["success"], msg="Extraction failed")
         self.assertEqual(
@@ -40,21 +39,21 @@ class DisclosureTest(unittest.TestCase):
     def test_jef_disclosure(self):
         """"""
         files = make_file(filename="JEF-disclosure.pdf")
-        response = requests.post("http://disclosures:5050/jef/", files=files)
+        response = requests.post("http://cl-disclosures:5050/jef/", files=files)
         self.assertEqual(response.status_code, 200, msg="Failed status code.")
         self.assertTrue(response.json()["success"], msg="Extraction failed")
 
     def test_jw_disclosure(self):
         """"""
         files = make_file(filename="JW-disclosure.pdf")
-        response = requests.post("http://disclosures:5050/jw/", files=files)
+        response = requests.post("http://cl-disclosures:5050/jw/", files=files)
         self.assertEqual(response.status_code, 200, msg="Failed status code.")
         self.assertTrue(response.json()["success"], msg="Extraction failed")
 
     def test_scanned_disclosure(self):
         """"""
         files = make_file(filename="image-disclosure.pdf")
-        response = requests.post("http://disclosures:5050/scan/", files=files)
+        response = requests.post("http://cl-disclosures:5050/scan/", files=files)
         self.assertEqual(response.status_code, 200, msg="Failed status code.")
         self.assertTrue(response.json()["success"], msg="Extraction failed")
 
