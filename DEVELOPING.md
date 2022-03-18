@@ -29,7 +29,7 @@ A soon to be written make file will certainly be used to build and push images t
 
     make x86_push --file docker/Makefile
 
-you can use 
+you can use
 
     make image --file docker/Makefile
 
