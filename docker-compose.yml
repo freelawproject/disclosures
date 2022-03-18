@@ -6,6 +6,6 @@ services:
     build:
       dockerfile: docker/Dockerfile
       context: .
-    image: freelawproject/disclosures
+    image: freelawproject/disclosure-extractor
     ports:
       - "5050:5050"
