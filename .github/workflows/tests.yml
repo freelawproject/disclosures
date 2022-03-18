@@ -19,4 +19,4 @@ jobs:
     - name: Build Image
       run: docker-compose -f docker-compose.dev.yml up --build -d
     - name: Run tests
-      run: docker exec mock_courtlistener_disclosures python3 -m unittest disclosures.tests
+      run: docker exec mock_cl_disclosures python3 -m unittest disclosures.tests
