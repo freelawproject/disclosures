@@ -6,13 +6,13 @@ services:
     build:
       dockerfile: docker/Dockerfile
       context: .
-    image: freelawproject/disclosure-extractor
+    image: freelawproject/disclosure-extractor:latest
     networks:
       - cl_net_overlay
 
   mock_cl_disclosures:
     container_name: mock_cl_disclosures
-    image: freelawproject/disclosure-extractor
+    image: freelawproject/disclosure-extractor:latest
     networks:
       - cl_net_overlay
     depends_on:

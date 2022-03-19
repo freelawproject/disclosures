@@ -30,7 +30,6 @@ def simple_disclosure(request):
     return JsonResponse(output)
 
 
-#
 def JEF_disclosure(request):
     """Extract content from a JEF generated financial disclosure.
 
