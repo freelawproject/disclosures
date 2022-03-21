@@ -5,7 +5,7 @@ from disclosures.views import (
     simple_disclosure,
     JEF_disclosure,
     JW_disclosure,
-    scan_disclosure,
+    scan_disclosure, identify_disclosure,
 )
 
 urlpatterns = [
@@ -25,7 +25,7 @@ urlpatterns = [
         name="jef-disclosure",
     ),
     path(
-        "jw/",
+        "extract/judical-watch/",
         JW_disclosure,
         name="jw-disclosure",
     ),
@@ -33,6 +33,11 @@ urlpatterns = [
         "scan/",
         scan_disclosure,
         name="scan-disclosure",
+    ),
+    path(
+        "extract/disclosure/",
+        identify_disclosure,
+        name="identify-disclosure",
     )
     # path(
     #     "disclosures/images-to-pdf/",
