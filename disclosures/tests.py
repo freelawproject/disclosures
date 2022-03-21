@@ -46,7 +46,9 @@ class DisclosureTest(unittest.TestCase):
     def test_jw_disclosure(self):
         """"""
         files = make_file(filename="JW-disclosure.pdf")
-        response = requests.post("http://cl-disclosures:5050/extract/judical-watch/", files=files)
+        response = requests.post(
+            "http://cl-disclosures:5050/extract/judical-watch/", files=files
+        )
         self.assertEqual(response.status_code, 200, msg="Failed status code.")
         self.assertTrue(response.json()["success"], msg="Extraction failed")
 
@@ -57,20 +59,26 @@ class DisclosureTest(unittest.TestCase):
         self.assertEqual(response.status_code, 200, msg="Failed status code.")
         self.assertTrue(response.json()["success"], msg="Extraction failed")
 
-class IdentifyDisclosureTest(unittest.TestCase):
 
+class IdentifyDisclosureTest(unittest.TestCase):
     def test_identify_disclosure(self):
         """Can we identify a disclosure and extract it?"""
         files = make_file(filename="JEF-disclosure.pdf")
-        response = requests.post("http://cl-disclosures:5050/extract/disclosure/", files=files)
+        response = requests.post(
+            "http://cl-disclosures:5050/extract/disclosure/", files=files
+        )
         self.assertTrue(response.json()["success"], msg="Extraction failed")
 
         files = make_file(filename="simple-disclosure.pdf")
-        response = requests.post("http://cl-disclosures:5050/extract/disclosure/", files=files)
+        response = requests.post(
+            "http://cl-disclosures:5050/extract/disclosure/", files=files
+        )
         self.assertTrue(response.json()["success"], msg="Extraction failed")
 
         files = make_file(filename="image-disclosure.pdf")
-        response = requests.post("http://cl-disclosures:5050/extract/disclosure/", files=files)
+        response = requests.post(
+            "http://cl-disclosures:5050/extract/disclosure/", files=files
+        )
         self.assertTrue(response.json()["success"], msg="Extraction failed")
 
 

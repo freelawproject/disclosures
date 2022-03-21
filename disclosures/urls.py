@@ -5,7 +5,8 @@ from disclosures.views import (
     simple_disclosure,
     JEF_disclosure,
     JW_disclosure,
-    scan_disclosure, identify_disclosure,
+    scan_disclosure,
+    identify_disclosure,
 )
 
 urlpatterns = [

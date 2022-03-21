@@ -35,9 +35,7 @@ class DocumentForm(forms.Form):
 
     def clean(self):
         """"""
-        fp = tempfile.NamedTemporaryFile(
-            delete=False, suffix='.pdf'
-        )
+        fp = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
         self.cleaned_data["fp"] = fp.name
         self.temp_save_file(fp.name)
         return self.cleaned_data

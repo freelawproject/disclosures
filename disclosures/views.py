@@ -12,7 +12,6 @@ from disclosures.forms import DocumentForm
 from disclosures.utils import cleanup_form
 
 
-
 def heartbeat(request):
     """Heartbeat endpoint
 
@@ -92,7 +91,7 @@ def identify_disclosure(request):
                 response = {"success": False, "message": "Unknown document type"}
         else:
             response = extract_vector_pdf(form.cleaned_data["fp"])
-            if not response['success']:
+            if not response["success"]:
                 response = extract_financial_document(
                     file_path=form.cleaned_data["fp"],
                     show_logs=False,
