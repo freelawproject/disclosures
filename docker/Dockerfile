@@ -1,19 +1,12 @@
 FROM python:3.9-slim
 
-RUN apt-get update
-RUN apt-get install -y python3-pip \
-            poppler-utils wget unzip bc
-
-RUN apt-get install -y --no-install-recommends \
-        libatlas-base-dev gfortran \
-        libpcre3-dev g++ libz-dev  \
-        build-essential make pkg-config \
-        libjpeg-dev libpng-dev libtiff-dev \
-        nginx
-
-RUN apt-get install python3-opencv -y
 RUN apt-get update --option "Acquire::Retries=3" --quiet=2 && \
     apt-get install -y --no-install-recommends apt-utils && \
+    apt-get install -y python3-pip poppler-utils \
+    wget unzip bc vim libleptonica-dev git \
+    tesseract-ocr libtesseract-dev \
+    libatlas-base-dev gfortran supervisor libpcre3 libpcre3-dev \
+    g++ libz-dev libjpeg-dev build-essential make && \
     apt-get install \
         --option "Acquire::Retries=3" \
         --no-install-recommends \
@@ -22,10 +15,7 @@ RUN apt-get update --option "Acquire::Retries=3" --quiet=2 && \
         `# Image & OCR tools` \
         imagemagick \
         `# Other dependencies` \
-        libffi-dev libxml2-dev libxslt-dev python-dev \
-        tesseract-ocr libtesseract-dev libleptonica-dev
-
-RUN apt-get remove -y wget unzip bc
+        libffi-dev libxml2-dev libxslt-dev python-dev
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -37,8 +27,6 @@ RUN pip install -r requirements.txt
 COPY disclosures /opt/app/disclosures
 COPY manage.py /opt/app/
 WORKDIR /opt/app
-
-COPY nginx/nginx.conf /etc/nginx/conf.d
 
 EXPOSE 5050
 COPY docker/docker-entrypoint.sh /opt/app/
