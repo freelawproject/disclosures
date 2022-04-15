@@ -1,6 +1,14 @@
-0.0.11
+0.0.12
 
 ## Current
+
+**0.0.12 - 2022-04-15**
+
+Features:
+    - Update to python 3.10
+    - Add disclosure_workers env
+
+## Previous Versions
 
 **0.0.11 - 2022-03-25**
 
@@ -8,8 +16,6 @@ Features:
 
 Changes
  - Streamline Dockerfiles
-
-## Previous Versions
 
 **0.0.10 - 2022-03-21**
 
