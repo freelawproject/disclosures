@@ -1,3 +1,3 @@
 Django==3.2.6
 gunicorn==20.1.0
-disclosure-extractor>=0.0.59
+disclosure-extractor>=0.0.60
