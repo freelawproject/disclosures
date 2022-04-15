@@ -1,12 +1,11 @@
-FROM python:3.9-slim
+FROM python:3.10-slim
 
 RUN apt-get update && \
     apt-get install -y python3-pip \
-        poppler-utils wget unzip bc && \
+        poppler-utils && \
     apt-get install -y --no-install-recommends \
-        libatlas-base-dev gfortran \
-        libpcre3-dev g++ libz-dev  \
-        build-essential make pkg-config \
+        libpcre3-dev  \
+        build-essential \
         libjpeg-dev libpng-dev libtiff-dev && \
     apt-get install python3-opencv -y && \
     apt-get install -y --no-install-recommends apt-utils && \
@@ -16,11 +15,10 @@ RUN apt-get update && \
         --assume-yes \
         --quiet=2 \
         `# Image & OCR tools` \
-        imagemagick \
+        imagemagick python3-opencv \
         `# Other dependencies` \
         libffi-dev libxml2-dev libxslt-dev python-dev \
-        tesseract-ocr libtesseract-dev libleptonica-dev && \
-    apt-get remove -y wget unzip bc
+        tesseract-ocr libtesseract-dev libleptonica-dev
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -34,6 +32,9 @@ COPY manage.py /opt/app/
 WORKDIR /opt/app
 
 EXPOSE 5050
-COPY docker/docker-entrypoint.sh /opt/app/
-RUN ["chmod", "+x", "/opt/app/docker-entrypoint.sh"]
-ENTRYPOINT ["/opt/app/docker-entrypoint.sh"]
+CMD gunicorn disclosures.wsgi:application \
+      --workers ${DISCLOSURE_WORKERS:-4} \
+      --max-requests 1000 \
+      --max-requests-jitter 100 \
+      --timeout 3600 \
+      --bind 0.0.0.0:5050

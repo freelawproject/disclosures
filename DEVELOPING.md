@@ -18,7 +18,7 @@ how we plan to use the Doctor image for CL.
 
 Starts the Doctor Container and the Mock CL Container that we run our tests from.
 
-    ddocker exec mock_cl_disclosures python3 -m unittest disclosures.tests
+    docker exec mock_cl_disclosures python3 -m unittest disclosures.tests
 
 This is a duplicate of the disclosures container, which we use for simplicity, but it
 makes the requests across the docker network.
