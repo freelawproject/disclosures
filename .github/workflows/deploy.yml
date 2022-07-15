@@ -43,6 +43,6 @@ jobs:
     - name: Create Kubeconfig with AWS CLI
       run: aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.EKS_CLUSTER_NAME }}
     - name: Rollout cl-disclosures
-      run: kubectl set image -n ${{ env.EKS_NAMESPACE }} deployment/cl-disclosures disclosures=freelawproject/disclosures:${{ steps.vars.outputs.sha_short }}
+      run: kubectl set image -n ${{ env.EKS_NAMESPACE }} deployment/cl-disclosures disclosures=freelawproject/disclosure-extractor:${{ steps.vars.outputs.sha_short }}
     - name: Watch cl-disclosures rollout status
       run: kubectl rollout status -n ${{ env.EKS_NAMESPACE }} deployment/cl-disclosures
