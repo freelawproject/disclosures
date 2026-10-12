@@ -3,7 +3,7 @@ Courtlistener Disclosures
 
 ## Notes
 
-This is a microservice of for extracting Financial Disclosure data used by Courtlistener.com.
+This is a microservice for extracting Financial Disclosure data used by Courtlistener.com.
 
 The goal of this microservice is to isolate out these tools to let Courtlistener (a django site) be streamlined and easier to maintain. This service is setup to run with NGINX and gunicorn with a series of endpoints that accept financail disclosures and return JSON containing the content of a given financial disclosure.
 
